@@ -23,4 +23,16 @@ public class Form {
     private String provider;
     
     private String description;
+    
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getNombre() { return name; }
+    public void setNombre(String name) { this.name = name; }
+
+    public String getEmail() { return provider; }
+    public void setEmail(String provider) { this.provider = provider; }
+
+    public String getComentario() { return description; }
+    public void setComentario(String description) { this.description = description; }
 }
