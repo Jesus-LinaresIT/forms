@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Lista de Forms</h1>
+    <button onclick="cargarForms()">Cargar</button>
+    <ul id="lista"></ul>
+
+    <script>
+        async function cargarForms() {
+            const response = await fetch('/forms');
+            const data = await response.json();
+
+            const lista = document.getElementById('lista');
+            lista.innerHTML = '';
+            data.forEach(form => {
+                const li = document.createElement('li');
+                li.textContent = `${form.id} - ${form.name} (${form.provider})`;
+                lista.appendChild(li);
+            });
+        }
+    </script>
+    </body>
+</html>
