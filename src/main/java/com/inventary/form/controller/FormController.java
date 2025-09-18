@@ -28,6 +28,14 @@ public class FormController {
     @GetMapping
     public List<Form> findAll() { return formServices.findAll(); }
     
+    @PutMapping
+    public ResponseEntity<Form> updateform(@PathVariable Long id, 
+                                            @RequestBody Form formDetails){
+        return formServices.update(id, formDetails)
+                .map(updateForm -> ResponseEntity.ok(updateForm))
+                .orElse(ResponseEntity.notFound().build());
+    }
+    
     @GetMapping("/{id}")
     public ResponseEntity<Form> findById(@PathVariable Long id){
         return ResponseEntity.ok(formServices.findById(id));

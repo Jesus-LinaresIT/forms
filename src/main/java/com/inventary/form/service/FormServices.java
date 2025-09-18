@@ -9,6 +9,8 @@ import com.inventary.form.repository.FormRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 
 @Service
 public class FormServices {
@@ -21,6 +23,15 @@ public class FormServices {
     public Form create(Form form) {return formRepository.save(form);}
     
     public List<Form> findAll() { return formRepository.findAll(); }
+    
+    public Optional<Form> update(Long id, Form formDetails) { 
+        return formRepository.findById(id).map(form -> {
+            form.setName(formDetails.getName());
+            form.setProvider(formDetails.getProvider());
+            form.setDescription(formDetails.getDescription());
+            return formRepository.save(form);
+        }); 
+    }
     
     public Form findById(Long id) { return formRepository.findById(id).orElseThrow(); }
     
